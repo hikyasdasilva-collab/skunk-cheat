@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Skunk Cheat</title>
+
+<style>
+body{
+  margin:0;
+  background:#050505;
+  font-family:monospace;
+  color:#00ff66;
+  overflow:hidden;
+}
+
+/* tela inicial */
+.boot{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#000;
+  font-size:22px;
+  animation:fade 2.5s forwards;
+}
+
+@keyframes fade{
+  0%,80%{opacity:1}
+  100%{opacity:0;pointer-events:none}
+}
+
+/* painel */
+.panel{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:300px;
+  background:#0a0a0a;
+  border:2px solid #00ff66;
+  border-radius:12px;
+  padding:14px;
+  box-shadow:0 0 25px #00ff66;
+}
+
+.title{
+  text-align:center;
+  font-weight:bold;
+  margin-bottom:10px;
+  font-size:18px;
+}
+
+.item{margin:8px 0;font-size:13px}
+
+input{accent-color:#00ff66}
+input[type=range]{width:100%}
+
+.group{margin-left:12px;font-size:12px}
+
+button{
+  width:100%;
+  padding:10px;
+  background:#00ff66;
+  border:none;
+  color:#000;
+  font-weight:bold;
+  border-radius:6px;
+  margin-top:10px;
+}
+
+.status{
+  font-size:11px;
+  margin-top:8px;
+}
+
+.term{
+  margin-top:6px;
+  background:#000;
+  border:1px solid #00ff66;
+  height:65px;
+  overflow:hidden;
+  font-size:10px;
+  padding:4px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="boot">Injecting Skunk Cheat...</div>
+
+<div class="panel">
+
+<div class="title">🦨 SKUNK CHEAT</div>
+
+<div class="item"><label><input type="checkbox"> Aim Bot</label></div>
+
+<div class="item">
+Aim FOV <span id="fovVal">50</span>
+<input id="fov" type="range" min="0" max="100" value="50">
+</div>
+
+<div class="item"><label><input type="checkbox"> Aim ESP</label></div>
+<div class="item"><label><input type="checkbox"> FPS Booster</label></div>
+
+<div class="item">
+Parte do corpo
+<div class="group">
+<label><input type="radio" name="body" checked> Cabeça</label><br>
+<label><input type="radio" name="body"> Pescoço</label><br>
+<label><input type="radio" name="body"> Peito</label>
+</div>
+</div>
+
+<button id="apply">APLICAR!</button>
+
+<div class="status">
+Status: <span id="conn">Connecting...</span><br>
+FPS: <span id="fps">0</span> | Ping: <span id="ping">0</span>ms
+</div>
+
+<div class="term" id="term"></div>
+
+</div>
+
+<script>
+const fov=document.getElementById("fov");
+const fovVal=document.getElementById("fovVal");
+fov.oninput=()=>fovVal.textContent=fov.value;
+
+setTimeout(()=>conn.textContent="Connected ✓",1500);
+
+setInterval(()=>{
+fps.textContent=60+Math.floor(Math.random()*15);
+ping.textContent=20+Math.floor(Math.random()*35);
+},500);
+
+const msgs=[
+"Scanning memory...",
+"Injecting modules...",
+"Bypass anti-cheat...",
+"Renderer hooked...",
+"ESP loaded",
+"Aimbot synced"
+];
+
+function log(m){
+let d=document.createElement("div");
+d.textContent="> "+m;
+term.appendChild(d);
+if(term.children.length>8) term.removeChild(term.firstChild);
+}
+
+setInterval(()=>log(msgs[Math.floor(Math.random()*msgs.length)]),1200);
+
+apply.onclick=()=>log("Applying configs...");
+</script>
+
+</body>
+</html>
